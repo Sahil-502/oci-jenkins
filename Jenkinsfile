@@ -9,6 +9,12 @@ pipeline {
       }
     }
 
+    stage('Approval to Deploy to On-Prem') {
+      steps {
+        input message: 'Approve deployment to ON-Prem (Main)?'
+      }
+    }
+
     stage('Deploy to On-Prem (MAIN)') {
       steps {
         sh '''
@@ -27,7 +33,7 @@ pipeline {
     stage('Deploy to Cloud (OKE)') {
       steps {
         sh '''
-          kubectl --context gke_learning-gcp-stage_us-central1-a_oci-cluster-2 \
+          kubectl --context gke_learning-gcp-stage_us-central1-a_oci-oke \
             apply -f jenkins-deploy/
         '''
       }
