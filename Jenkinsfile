@@ -33,7 +33,7 @@ pipeline {
     stage('Deploy to Cloud (OKE)') {
       steps {
         sh '''
-          kubectl --context gke_learning-gcp-stage_us-central1-a_oci-oke \
+          kubectl --context context-civhvve3nta \
             apply -f jenkins-deploy/
         '''
       }
